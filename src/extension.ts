@@ -240,7 +240,7 @@ function _grepFiles(pattern: string, root: string, fileGlob?: string): { file: s
 
 /* v2.89.154 — 현재 익스텐션 버전. /ping 응답에 포함시켜서 다른 인스턴스가 우리 거인지
    식별 + 옛 버전인지 판단. package.json 의 version 과 동기 유지. */
-const _CONNECT_AI_VERSION = '3.0.0';
+const _CONNECT_AI_VERSION = '3.0.1';
 
 /* v2.89.127 — semver 비교. true 이면 a < b (a 가 옛 버전). */
 function _versionLessThan(a: string, b: string): boolean {
@@ -2017,7 +2017,9 @@ async function _quickLLMCall(systemPrompt: string, userMsg: string, maxTokens = 
         const r = await axios.post(apiUrl, body, { timeout: tmo });
         return r.data?.choices?.[0]?.message?.content?.toString().trim() || '';
     }
-    const body = { model: defaultModel, messages, stream: false, options: { num_predict: maxTokens, temperature: 0.2 } };
+    /* v3.0.1 — think:false: gemma4 같은 thinking 모델이 기본 추론 모드로 토큰을 전부
+       소모해 response가 비는 사고 방지. non-thinking 모델(gemma3 등)엔 무해(no-op). */
+    const body = { model: defaultModel, messages, stream: false, think: false, options: { num_predict: maxTokens, temperature: 0.2 } };
     const r = await axios.post(apiUrl, body, { timeout: tmo });
     return r.data?.message?.content?.toString().trim() || '';
 }
@@ -8053,7 +8055,8 @@ export function activate(context: vscode.ExtensionContext) {
                         const payload = {
                             model: config.defaultModel,
                             messages: [{ role: 'user', content: promptStr }],
-                            stream: false
+                            stream: false,
+                            ...(isLMStudio ? {} : { think: false })
                         };
 
                         const ollamaRes = await axios.post(targetUrl, payload, { timeout: config.timeout });
@@ -8102,7 +8105,8 @@ export function activate(context: vscode.ExtensionContext) {
                         const payload = {
                             model: config.defaultModel,
                             messages: [{ role: "user", content: fullPrompt }],
-                            stream: false
+                            stream: false,
+                            ...(isLMStudio ? {} : { think: false })
                         };
                         
                         let responseText = "";
@@ -8171,7 +8175,8 @@ export function activate(context: vscode.ExtensionContext) {
                         const payload = {
                             model: config.defaultModel,
                             messages: [{ role: "user", content: fullPrompt }],
-                            stream: false
+                            stream: false,
+                            ...(isLMStudio ? {} : { think: false })
                         };
                         
                         let responseText = "";
@@ -18772,6 +18777,7 @@ class SidebarChatProvider implements vscode.WebviewViewProvider {
                     model: modelName || defaultModel,
                     messages: reqMessages,
                     stream: true,
+                    think: false, // thinking 모델(gemma4 등) 빈 응답 방지
                     options: { num_ctx: 8192, num_predict: 2048, temperature: this._temperature, top_p: this._topP, top_k: this._topK }
                 };
                 // Attach images to the last user message for Ollama
@@ -18935,7 +18941,7 @@ class SidebarChatProvider implements vscode.WebviewViewProvider {
                 stream: true,
                 ...(isLMStudio
                     ? { max_tokens: 4096, temperature: this._temperature, top_p: this._topP }
-                    : { options: { num_ctx: 8192, num_predict: 2048, temperature: this._temperature, top_p: this._topP, top_k: this._topK } }),
+                    : { think: false, options: { num_ctx: 8192, num_predict: 2048, temperature: this._temperature, top_p: this._topP, top_k: this._topK } }),
             };
 
             // 🎬 Thinking Mode: notify graph panel that a session is starting
@@ -19085,7 +19091,7 @@ class SidebarChatProvider implements vscode.WebviewViewProvider {
                     stream: true, // 스트리밍 활성화
                     ...(isLMStudio 
                         ? { max_tokens: 4096, temperature: this._temperature, top_p: this._topP } 
-                        : { options: { num_ctx: 8192, num_predict: 2048, temperature: this._temperature, top_p: this._topP, top_k: this._topK } }),
+                        : { think: false, options: { num_ctx: 8192, num_predict: 2048, temperature: this._temperature, top_p: this._topP, top_k: this._topK } }),
                 }, { timeout, responseType: 'stream', signal: this._abortController?.signal });
 
                 aiMessage = cleanedResponse + uiFeedbackStr;
@@ -20881,6 +20887,7 @@ ${catalog.map((c, i) => `${i + 1}. agent=${c.agentId} tool=${c.tool} — ${c.des
                 model: modelName || defaultModel,
                 messages,
                 stream: true,
+                think: false, // thinking 모델(gemma4 등) 빈 응답 방지
                 options: { num_ctx: 8192, num_predict: -1, temperature: this._temperature, top_p: this._topP, top_k: this._topK }
             };
             if (opts?.jsonMode) body.format = 'json';
