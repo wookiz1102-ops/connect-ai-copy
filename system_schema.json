@@ -1,9 +1,9 @@
 {
   "schema_name": "ConnectAI_AgentSystemSchema",
   "version": "1.0.0",
-  "description": "A comprehensive JSON schema defining the operational state, capabilities, and configuration of the Connect AI agent.",
+  "description": "A comprehensive JSON schema defining the operational state, capabilities, and configuration of the Wookiz World agent.",
   "agent_identity": {
-    "name": "Connect AI",
+    "name": "Wookiz World",
     "role": "Agentic AI Coding Assistant",
     "core_principle": "100% Local · 100% Offline · 100% Free"
   },

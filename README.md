@@ -1,57 +1,66 @@
 <p align="center">
-  <img src="assets/icon.png" width="120" alt="Connect AI Logo" />
+  <img src="assets/icon.png" width="120" alt="Wookiz World Logo" />
 </p>
 
-<h1 align="center">Connect AI v2 (P-Reinforce)</h1>
+<h1 align="center">Wookiz World 🌍</h1>
 
 <p align="center">
-  <strong>100% Local · 100% Offline · Autonomous Knowledge Engine</strong><br/>
-  VS Code / Cursor 확장 프로그램으로, 당신의 낡은 IDE를 최상위 에이전트 대학(A.U)의 심장으로 진화시킵니다.
+  <strong>AI 1인 기업 워크스페이스 — 100% Local · 100% Offline · Free</strong><br/>
+  VS Code / Cursor 확장 프로그램. 나만의 AI 에이전트 팀이 유튜브·블로그·개발·수익화 4개 사업을 함께 굴립니다.
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-2.1.30-blue" alt="version" />
+  <img src="https://img.shields.io/badge/version-3.0.0-blue" alt="version" />
   <img src="https://img.shields.io/badge/license-MIT-green" alt="license" />
-  <img src="https://img.shields.io/badge/integration-Agent_University-purple" alt="integration" />
   <img src="https://img.shields.io/badge/engine-Ollama%20%7C%20LM%20Studio-orange" alt="engine" />
 </p>
 
 ---
 
-## 🌟 Overview: The P-Reinforce Architecture
+## 🌟 Overview
 
-Connect AI v2.1.30은 단순한 코딩 에이전트를 넘어섭니다. **P-Reinforce 아키텍처**를 기반으로 설계된 이 에이전트는 사용자의 모든 정보와 지시를 받아들여 **스스로 의미를 분석하고, 폴더를 생성하고, 마크다운 위키 파일로 정리하여 클라우드에 자동 백업**하는 자율 지식 정원사(Autonomous Gardener)입니다.
+Wookiz World는 로컬 LLM 위에서 도는 **AI 1인 기업**입니다. CEO 에이전트가 사장님(나)의 지시를 받아 전문 에이전트들에게 작업을 분배하고, 각 에이전트는 내 지식(세컨드 브레인)·결정 로그·메모리를 컨텍스트로 일합니다. 회사 폴더와 두뇌 폴더는 GitHub에 자동 백업됩니다.
+
+### 4대 사업 기둥
+
+| 기둥 | 담당 에이전트 |
+|:--|:--|
+| 📺 유튜브·영상 콘텐츠 | 태오 (Head of YouTube) · 루시 (Sound Director) |
+| ✍️ 티스토리 블로그·SEO | 한별 (SEO 작가) · 다온 (Researcher) |
+| 💻 개발·제품 | 카이 (시니어 풀스택 엔지니어) |
+| 💼 비즈니스·수익화 | 라온 (비즈니스 전략가) |
+
+**지원 부서:** 🧭 CEO (총괄·작업 분배) · 📱 수민 (비서·텔레그램 브리핑) · 📷 리아 (SNS 확산) · 🎨 모네 (디자인)
 
 ---
 
 ## ⚡ Core Features
 
-### 1. 🧠 Agent University (A.U) 완벽 연동
-Agent University 웹 플랫폼과 실시간으로 통신합니다. 
-웹에서 버튼 한 번 누르는 즉시, 로컬 VS Code의 `4825` 포트를 통해 프리미엄 브레인 팩(Premium Brain Pack) 지식이 로컬 인공지능 뇌(`~/.connect-ai-brain`)에 자동 주입되어 신경망을 확장합니다.
+### 1. 🏢 AI 에이전트 팀
+사이드바에서 `"카이야 랜딩페이지 만들어줘"`, `"한별아 이 주제로 블로그 초안 써줘"` 처럼 이름을 부르면 해당 에이전트가 바로 응답합니다. 자연어로 지시하면 CEO가 알아서 적임자에게 분배합니다.
 
-### 2. 📂 자율 지식 구조화 (Zero-Interaction Styling)
-유저가 던져주는 원시 데이터(Raw Data)를 에이전트가 스스로 판단해 `10_Wiki`, `00_Raw`, `🚀 Skills` 와 같은 완벽한 P-Reinforce 템플릿 규격의 Markdown 파일로 분할-조립하여 저장합니다.
+### 2. 🧠 세컨드 브레인 (자율 지식 구조화)
+던져준 원시 데이터를 에이전트가 스스로 판단해 `00_Raw`, `10_Wiki`, `🚀 Skills` 규격의 Markdown으로 정리해 저장합니다.
 
-### 3. ☁️ 클라우드 동기화 (Auto-Git Sync 100%)
-로컬 PC에서 파일 생성이 일어나는 순간, 에이전트가 스스로 GitHub 저장소에 `git add`, `commit`, `push`를 수행합니다. 
-마스터는 이제 지루한 푸시 커맨드를 입력할 필요가 없습니다.
+### 3. ☁️ 클라우드 자동 백업 (Auto-Git Sync)
+파일 생성이 일어나는 순간 에이전트가 스스로 `git add · commit · push`를 수행합니다.
 
-### 4. 🔗 설치형 모델 자동 감지 (Dynamic Model Detection)
-Ollama 또는 LM Studio에 설치된 모델을 내부 API(`v1/models`)를 호출하여 자동 감지하고, UI의 스위치 보드(드롭다운)에 연결합니다. 어떤 모델을 쓸지 번거롭게 입력하지 마십시오.
+### 4. 🔗 로컬 모델 자동 감지
+Ollama / LM Studio에 설치된 모델을 자동 감지해 드롭다운에 연결합니다.
+
+### 5. 🤖 24시간 자율 사이클 + 데일리 브리핑
+자리를 비우면 CEO가 회사 목표를 검토해 다음 한 스텝을 자동 실행하고, 매일 아침 비서 수민이 텔레그램으로 브리핑을 보냅니다.
 
 ---
 
 ## ⚒️ Agent Capabilities (에이전트 권한)
-
-로컬 머신의 파일 시스템과 터미널에 대한 통제권을 인공지능에게 부여합니다. (100% 안전한 권한 승인 기반)
 
 | Action | Description |
 |:--|:--|
 | **📄 Create Files** | 새로운 파일과 폴더를 생성합니다 |
 | **✏️ Edit Files** | 기존 파일 내의 코드를 수정합니다 |
 | **🗑️ Delete Files** | 불필요한 파일을 즉각 파쇄합니다 |
-| **📖 Read Files** | 마스터의 프로젝트 파일을 읽어 맥락을 파악합니다 |
+| **📖 Read Files** | 프로젝트 파일을 읽어 맥락을 파악합니다 |
 | **📂 Browse Directories** | 디렉토리 구조를 분석합니다 |
 | **🖥️ Run Commands** | `npm run build`, `git push` 등 터미널 명령을 수행합니다 |
 
@@ -59,48 +68,45 @@ Ollama 또는 LM Studio에 설치된 모델을 내부 API(`v1/models`)를 호출
 
 ## 📥 Installation (설치 방법)
 
-### A.U 멤버십 유저 (Recommended)
-1. 상단 탭의 [Releases](https://github.com/wonseokjung/connect-ai/releases) 메뉴로 진입.
-2. 최신 `v2.1.30.vsix` 파일을 다운로드.
-3. VS Code 에서 `Cmd+Shift+P` → **Extensions: Install from VSIX** → 다운받은 파일 선택
-
 ### 개발자 빌드 (Build from Source)
 ```bash
-git clone https://github.com/wonseokjung/connect-ai.git
-cd connect-ai
+git clone https://github.com/wookiz1102-ops/connect-ai-copy.git
+cd connect-ai-copy
 npm install
 npm run compile
-npx vsce package
+npx vsce package --no-dependencies
 ```
+생성된 `wookiz-world-3.0.0.vsix`를 VS Code에서 `Cmd/Ctrl+Shift+P` → **Extensions: Install from VSIX**로 설치.
 
 ---
 
-## ⚙️ Engine Setup (엔진 설정 방법)
+## ⚙️ Engine Setup (엔진 설정)
 
-### ✅ LM Studio (Apple Silicon, Windows) - 권장
+### ✅ LM Studio (Windows, Apple Silicon) — 권장
 1. [lmstudio.ai](https://lmstudio.ai/) 에서 설치
 2. Gemma 3, Llama 3 또는 Qwen Coder 등 원하는 모델 로드
 3. **Developer 탭(좌측 `<>` 메뉴)** 진입 후 **Start Server** 클릭
-4. Connect AI의 ⚙️ 채팅방 설정에서 엔진을 "LM Studio"로 선택 (자동 모델 인덱싱 완료)
+4. Wookiz World의 ⚙️ 채팅방 설정에서 엔진을 "LM Studio"로 선택
 
-### ✅ Ollama (Mac, Linux)
+### ✅ Ollama (Mac, Linux, Windows)
 ```bash
-brew install ollama
 ollama pull gemma3   # 원하는 모델 풀링
 ```
-Connect AI에서 설정만 "Ollama"로 바꿔주시면 끝납니다.
+설정에서 엔진만 "Ollama"로 바꿔주면 끝.
 
 ---
 
-## 🔒 Privacy (완벽한 보안)
+## 🔒 Privacy
 
-- **Zero Cloud API:** 당신의 코드는 외부 클라우드 통신망을 타지 않습니다.
-- **Zero Telemetry:** 모든 연산력은 100% Local Inference 환경에서 이루어집니다.
-- 기업 보안 등급에 준하는 극강의 밀폐형 로컬 지식망 생성을 보장합니다.
+- **Zero Cloud API:** 코드와 지식은 외부 클라우드로 나가지 않습니다.
+- **Zero Telemetry:** 모든 연산은 100% 로컬에서 이루어집니다.
 
 ---
+
+## 🙏 Credits
+
+이 프로젝트는 [Connect AI](https://github.com/wonseokjung/connect-ai) (MIT License)를 기반으로 Wookiz World에 맞게 커스터마이징했습니다.
 
 <p align="center">
-  <strong>Built for Antigravity & Agent University</strong><br/>
-  Designed by <a href="https://github.com/wonseokjung">Jay</a> × Connect AI Architect
+  <strong>Wookiz World — my company, my agents, my world.</strong>
 </p>

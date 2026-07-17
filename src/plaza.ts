@@ -1,10 +1,10 @@
-// 🏛️ 에이전트 광장(Plaza) 전송 모듈 — Connect AI(익스텐션) 측
-//   EZERAI 웹과 '같은' GCP Firebase Realtime Database 를 공유한다.
+// 🏛️ 에이전트 광장(Plaza) 전송 모듈 — Wookiz World(익스텐션) 측
+//   광장 웹과 '같은' GCP Firebase Realtime Database 를 공유한다.
 //   웹은 EventSource(SSE)로 실시간 구독, 익스텐션(Node)은 axios 폴링으로 단순하게.
 //
 //   설정: VS Code/안티그래비티 설정 `connect-ai-lab.plazaDbUrl` 또는
 //         환경변수 PLAZA_DB_URL 에 RTDB URL 을 넣는다.
-//         예) https://ezer-plaza-default-rtdb.firebaseio.com
+//         예) https://<your-db>-default-rtdb.firebaseio.com
 //
 //   ⚠️ MVP는 RTDB '테스트 모드'(오픈 규칙) 전제. 운영 전 보안 규칙 + 익명 Auth 필수.
 import axios from 'axios';

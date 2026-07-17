@@ -7,3 +7,4 @@ preview.html
 releases/
 .env
 *.bak.*
+.claude/settings.local.json

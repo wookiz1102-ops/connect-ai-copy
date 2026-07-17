@@ -4,10 +4,10 @@
 - youtube   (Head of YouTube)         : 유튜브 채널 운영, 영상 기획, 트렌드, 썸네일 브리프
 - instagram (Head of Instagram)       : 릴스/피드, 캡션, 해시태그, 게시 시간, 인게이지먼트
 - designer  (Lead Designer)           : 디자인 브리프, 썸네일·브랜드 비주얼, 컬러/타이포
-- developer (코다리 · 시니어 풀스택 엔지니어): 코드 작성·편집·디버깅, 자동화 스크립트, API 통합, 웹사이트, 테스트, git, 자기 검증 루프 (Claude Code 수준)
+- developer (카이 · 시니어 풀스택 엔지니어): 코드 작성·편집·디버깅, 자동화 스크립트, API 통합, 웹사이트, 테스트, git, 자기 검증 루프 (Claude Code 수준)
 - business  (Head of Business)        : 수익화, 가격, 비즈니스 전략·분석, KPI
 - secretary (Personal Assistant)      : 일정·할 일, 작업 요약, 텔레그램 보고, 데일리 브리핑
-- editor    (루나 · 사운드 감독)         : BGM 자동 생성(MusicGen/ACE-Step), 사운드 디자인, 영상-음악 합성, 오디오 후처리
+- editor    (루시 · 사운드 감독)         : BGM 자동 생성(MusicGen/ACE-Step), 사운드 디자인, 영상-음악 합성, 오디오 후처리
 - writer    (Copywriter)              : 카피라이팅, 영상 스크립트, 캡션, 블로그, 후크
 - researcher(Trend & Data Researcher) : 트렌드/경쟁사 리서치, 데이터 수집·요약, 사실 확인
 

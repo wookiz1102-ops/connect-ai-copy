@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Standalone 24h autonomous cycle for Connect AI Lab.
+ * Standalone 24h autonomous cycle for Wookiz World Lab.
  *
  * Runs OUTSIDE the VS Code extension lifecycle so the company keeps working
  * even when the IDE is closed. Reads the brain folder, asks the local LLM to

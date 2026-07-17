@@ -863,7 +863,7 @@ function showReportScheduleModal(entries){
   });
 }
 
-/* v2.89.103 — 채용 PIN 모달. 잠긴 에이전트(현재 루나) 카드 클릭 시 등장.
+/* v2.89.103 — 채용 PIN 모달. 잠긴 에이전트(현재 루시) 카드 클릭 시 등장.
    힌트는 절대 노출 X — placeholder는 ••••, label은 "AUTHORIZATION CODE"만.
    4자리 입력 시 자동 검증, 정답이면 글리치 효과 + 환영 시퀀스 → 백엔드 영구 저장. */
 let _hirePinBackdrop = null;
