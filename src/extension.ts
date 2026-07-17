@@ -240,7 +240,7 @@ function _grepFiles(pattern: string, root: string, fileGlob?: string): { file: s
 
 /* v2.89.154 — 현재 익스텐션 버전. /ping 응답에 포함시켜서 다른 인스턴스가 우리 거인지
    식별 + 옛 버전인지 판단. package.json 의 version 과 동기 유지. */
-const _CONNECT_AI_VERSION = '3.0.2';
+const _CONNECT_AI_VERSION = '3.0.3';
 
 /* v2.89.127 — semver 비교. true 이면 a < b (a 가 옛 버전). */
 function _versionLessThan(a: string, b: string): boolean {
@@ -1647,20 +1647,10 @@ function _markdownToTelegram(src: string): string {
 }
 
 async function sendTelegramReport(text: string): Promise<boolean> {
-  const { token, chatId } = readTelegramConfig();
-  if (!token || !chatId) return false;
-  try {
-    const url = `https://api.telegram.org/bot${token}/sendMessage`;
-    await axios.post(url, {
-      chat_id: chatId,
-      text: _markdownToTelegram(text).slice(0, 4000),
-      parse_mode: 'Markdown',
-      disable_web_page_preview: true
-    }, { timeout: 8000 });
-    return true;
-  } catch {
-    return false;
-  }
+  /* v3.0.3 — slice(0,4000) 가위질 제거. 모든 발송을 분할 전송(sendTelegramLong)에
+     위임: 4096자 초과 브리핑·산출물이 (1/2)(2/2)로 나뉘어 끝까지 도착한다.
+     짧은 메시지는 단일 청크라 기존과 동일하게 동작. */
+  return sendTelegramLong(text);
 }
 
 /* Send arbitrarily long text by splitting at natural boundaries (paragraphs,

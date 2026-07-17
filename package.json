@@ -2,7 +2,7 @@
   "name": "wookiz-world",
   "displayName": "Wookiz World — AI 1인 기업 · 나만의 에이전트 팀 · 제2의 두뇌",
   "description": "Wookiz World: AI 1인 기업 워크스페이스. 유튜브·티스토리 블로그·개발·수익화 4개 사업을 CEO + 전문 에이전트 팀이 내 지식·결정 로그·메모리를 컨텍스트로 24시간 미션 향해 자동으로 굴립니다. 100% 로컬·오프라인·무료.",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "publisher": "wookiz",
   "license": "MIT",
   "icon": "assets/icon.png",
