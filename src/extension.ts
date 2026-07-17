@@ -240,7 +240,7 @@ function _grepFiles(pattern: string, root: string, fileGlob?: string): { file: s
 
 /* v2.89.154 — 현재 익스텐션 버전. /ping 응답에 포함시켜서 다른 인스턴스가 우리 거인지
    식별 + 옛 버전인지 판단. package.json 의 version 과 동기 유지. */
-const _CONNECT_AI_VERSION = '3.0.1';
+const _CONNECT_AI_VERSION = '3.0.2';
 
 /* v2.89.127 — semver 비교. true 이면 a < b (a 가 옛 버전). */
 function _versionLessThan(a: string, b: string): boolean {
@@ -610,7 +610,9 @@ function runCommandCaptured(
         const child = spawn(cmd, {
             cwd,
             shell: true,
-            env: process.env,
+            /* PYTHONUTF8: Windows 콘솔 기본 cp949에서 도구의 이모지 print가
+               UnicodeEncodeError로 죽어 "(출력 없음) exit 1"이 되는 사고 방지 */
+            env: { ...process.env, PYTHONUTF8: '1' },
             stdio: ['ignore', 'pipe', 'pipe']
         });
         let buf = '';
@@ -3736,7 +3738,7 @@ async function _runDailyBriefingOnce(force = false): Promise<void> {
             const ppScript = path.join(ppToolDir, 'paypal_revenue.py');
             const ppJson = path.join(ppToolDir, 'paypal_revenue.json');
             if (fs.existsSync(ppScript) && fs.existsSync(ppJson)) {
-                const env = { ...process.env, LOOKBACK_DAYS: '1' };
+                const env = { ...process.env, PYTHONUTF8: '1', LOOKBACK_DAYS: '1' };
                 const r = await new Promise<{ exitCode: number; output: string }>((resolve) => {
                     const cp = require('child_process');
                     const p = cp.spawn(_pythonCmd(), [ppScript], { cwd: ppToolDir, env });
@@ -3812,7 +3814,7 @@ async function _runRevenueWatcherOnce(): Promise<void> {
         const cfg = JSON.parse(_safeReadText(ppJson) || '{}');
         if (!cfg.CLIENT_ID || !cfg.CLIENT_SECRET) return; /* 미설정 — silent */
 
-        const env = { ...process.env, OUTPUT: 'json', LOOKBACK_DAYS: '2' };
+        const env = { ...process.env, PYTHONUTF8: '1', OUTPUT: 'json', LOOKBACK_DAYS: '2' };
         const r = await new Promise<{ exitCode: number; output: string }>((resolve) => {
             const cp = require('child_process');
             const p = cp.spawn(_pythonCmd(), [ppScript], { cwd: ppToolDir, env });
@@ -10791,7 +10793,7 @@ class CompanyDashboardPanel {
                             this._panel.webview.postMessage({ type: 'revenueMini', data: null });
                             return;
                         }
-                        const env = { ...process.env, OUTPUT: 'json', LOOKBACK_DAYS: '30' };
+                        const env = { ...process.env, PYTHONUTF8: '1', OUTPUT: 'json', LOOKBACK_DAYS: '30' };
                         const r = await new Promise<{ exitCode: number; output: string }>((resolve) => {
                             const cp = require('child_process');
                             const p = cp.spawn(_pythonCmd(), [ppScript], { cwd: ppToolDir, env });
@@ -12231,7 +12233,7 @@ class RevenueDashboardPanel {
                 this._postError('PayPal Client ID 또는 Secret 미설정. 외부 연결 패널에서 입력 필요.');
                 return;
             }
-            const env = { ...process.env, OUTPUT: 'json', LOOKBACK_DAYS: String(cfg.LOOKBACK_DAYS || 30) };
+            const env = { ...process.env, PYTHONUTF8: '1', OUTPUT: 'json', LOOKBACK_DAYS: String(cfg.LOOKBACK_DAYS || 30) };
             const r = await new Promise<{ exitCode: number; output: string; stderr: string }>((resolve) => {
                 const cp = require('child_process');
                 const p = cp.spawn(_pythonCmd(), [ppScript], { cwd: ppToolDir, env });
@@ -12687,7 +12689,7 @@ class OfficePanel {
                             panel.webview.postMessage({ type: 'revenueMini', data: null });
                             break;
                         }
-                        const env = { ...process.env, OUTPUT: 'json', LOOKBACK_DAYS: '30' };
+                        const env = { ...process.env, PYTHONUTF8: '1', OUTPUT: 'json', LOOKBACK_DAYS: '30' };
                         const r = await new Promise<{ exitCode: number; output: string }>((resolve) => {
                             const cp = require('child_process');
                             const p = cp.spawn(_pythonCmd(), [ppScript], { cwd: ppToolDir, env });
@@ -21066,7 +21068,7 @@ ${catalog.map((c, i) => `${i + 1}. agent=${c.agentId} tool=${c.tool} — ${c.des
 `;
         }
         try {
-            const env = { ...process.env, LOOKBACK_DAYS: String(cfg.LOOKBACK_DAYS || 30) };
+            const env = { ...process.env, PYTHONUTF8: '1', LOOKBACK_DAYS: String(cfg.LOOKBACK_DAYS || 30) };
             const r = await new Promise<{ exitCode: number; output: string; stderr: string }>((resolve) => {
                 const cp = require('child_process');
                 const p = cp.spawn(_pythonCmd(), [ppScript], { cwd: ppToolDir, env });
